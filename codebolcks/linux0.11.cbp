@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="linux0.11" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/linux0" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/linux0" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../boot/bootsect.s" />
+		<Unit filename="../boot/head.s" />
+		<Unit filename="../boot/setup.s" />
+		<Unit filename="../fs/bitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/block_dev.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/buffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/char_dev.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/exec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/fcntl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/file_dev.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/file_table.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/inode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/ioctl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/namei.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/pipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/read_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/stat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/super.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../fs/truncate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../include/a.out.h" />
+		<Unit filename="../include/asm/io.h" />
+		<Unit filename="../include/asm/memory.h" />
+		<Unit filename="../include/asm/segment.h" />
+		<Unit filename="../include/asm/system.h" />
+		<Unit filename="../include/const.h" />
+		<Unit filename="../include/ctype.h" />
+		<Unit filename="../include/errno.h" />
+		<Unit filename="../include/fcntl.h" />
+		<Unit filename="../include/linux/config.h" />
+		<Unit filename="../include/linux/fdreg.h" />
+		<Unit filename="../include/linux/fs.h" />
+		<Unit filename="../include/linux/hdreg.h" />
+		<Unit filename="../include/linux/head.h" />
+		<Unit filename="../include/linux/kernel.h" />
+		<Unit filename="../include/linux/mm.h" />
+		<Unit filename="../include/linux/sched.h" />
+		<Unit filename="../include/linux/sys.h" />
+		<Unit filename="../include/linux/tty.h" />
+		<Unit filename="../include/signal.h" />
+		<Unit filename="../include/stdarg.h" />
+		<Unit filename="../include/stddef.h" />
+		<Unit filename="../include/string.h" />
+		<Unit filename="../include/sys/stat.h" />
+		<Unit filename="../include/sys/times.h" />
+		<Unit filename="../include/sys/types.h" />
+		<Unit filename="../include/sys/utsname.h" />
+		<Unit filename="../include/sys/wait.h" />
+		<Unit filename="../include/termios.h" />
+		<Unit filename="../include/time.h" />
+		<Unit filename="../include/unistd.h" />
+		<Unit filename="../include/utime.h" />
+		<Unit filename="../init/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/asm.s" />
+		<Unit filename="../kernel/blk_drv/blk.h" />
+		<Unit filename="../kernel/blk_drv/floppy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/blk_drv/hd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/blk_drv/ll_rw_blk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/blk_drv/ramdisk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/chr_drv/console.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/chr_drv/keyboard.S" />
+		<Unit filename="../kernel/chr_drv/rs_io.s" />
+		<Unit filename="../kernel/chr_drv/serial.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/chr_drv/tty_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/chr_drv/tty_ioctl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/exit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/fork.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/math/math_emulate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/mktime.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/panic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/printk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/sched.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/signal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/system_call.s" />
+		<Unit filename="../kernel/traps.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../kernel/vsprintf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/_exit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/close.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/ctype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/dup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/errno.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/execve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/malloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/setsid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/wait.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../mm/page.s" />
+		<Unit filename="../tools/build.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
