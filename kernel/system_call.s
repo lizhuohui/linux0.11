@@ -68,6 +68,9 @@ nr_system_calls = 72
 .globl hd_interrupt,floppy_interrupt,parallel_interrupt
 .globl device_not_available, coprocessor_error
 
+.globl do_hd /* 当在 汇编中声明时，必须先make clean, 才能编译通过*/
+.globl do_floppy
+
 .align 4
 bad_sys_call:
 	movl $-1,%eax

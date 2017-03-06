@@ -88,6 +88,9 @@
 		<Unit filename="../include/a.out.h" />
 		<Unit filename="../include/asm/io.h" />
 		<Unit filename="../include/asm/memory.h" />
+		<Unit filename="../include/asm/segment.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../include/asm/segment.h" />
 		<Unit filename="../include/asm/system.h" />
 		<Unit filename="../include/const.h" />
@@ -107,6 +110,9 @@
 		<Unit filename="../include/signal.h" />
 		<Unit filename="../include/stdarg.h" />
 		<Unit filename="../include/stddef.h" />
+		<Unit filename="../include/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../include/string.h" />
 		<Unit filename="../include/sys/stat.h" />
 		<Unit filename="../include/sys/times.h" />
@@ -121,6 +127,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../kernel/asm.s" />
+		<Unit filename="../kernel/blk_drv/blk.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../kernel/blk_drv/blk.h" />
 		<Unit filename="../kernel/blk_drv/floppy.c">
 			<Option compilerVar="CC" />
@@ -128,6 +137,7 @@
 		<Unit filename="../kernel/blk_drv/hd.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/blk_drv/hd.h" />
 		<Unit filename="../kernel/blk_drv/ll_rw_blk.c">
 			<Option compilerVar="CC" />
 		</Unit>
