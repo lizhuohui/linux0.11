@@ -31,60 +31,88 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../Makefile" />
+		<Unit filename="../System.map" />
+		<Unit filename="../boot/bootsect" />
+		<Unit filename="../boot/bootsect.o" />
 		<Unit filename="../boot/bootsect.s" />
+		<Unit filename="../boot/bootsect.s~" />
+		<Unit filename="../boot/head.o" />
 		<Unit filename="../boot/head.s" />
+		<Unit filename="../boot/setup" />
+		<Unit filename="../boot/setup.o" />
 		<Unit filename="../boot/setup.s" />
+		<Unit filename="../fs/Makefile" />
+		<Unit filename="../fs/Makefile~" />
 		<Unit filename="../fs/bitmap.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/bitmap.o" />
 		<Unit filename="../fs/block_dev.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/block_dev.o" />
 		<Unit filename="../fs/buffer.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/buffer.o" />
 		<Unit filename="../fs/char_dev.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/char_dev.o" />
 		<Unit filename="../fs/exec.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/exec.o" />
 		<Unit filename="../fs/fcntl.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/fcntl.o" />
 		<Unit filename="../fs/file_dev.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/file_dev.o" />
 		<Unit filename="../fs/file_table.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/file_table.o" />
+		<Unit filename="../fs/fs.o" />
 		<Unit filename="../fs/inode.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/inode.o" />
 		<Unit filename="../fs/ioctl.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/ioctl.o" />
 		<Unit filename="../fs/namei.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/namei.o" />
 		<Unit filename="../fs/open.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/open.o" />
 		<Unit filename="../fs/pipe.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/pipe.o" />
 		<Unit filename="../fs/read_write.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/read_write.o" />
 		<Unit filename="../fs/stat.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/stat.o" />
 		<Unit filename="../fs/super.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/super.o" />
 		<Unit filename="../fs/truncate.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../fs/truncate.o" />
 		<Unit filename="../include/a.out.h" />
 		<Unit filename="../include/asm/io.h" />
 		<Unit filename="../include/asm/memory.h" />
@@ -126,112 +154,174 @@
 		<Unit filename="../init/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../init/main.o" />
+		<Unit filename="../kernel/Makefile" />
+		<Unit filename="../kernel/Makefile~" />
+		<Unit filename="../kernel/asm.o" />
 		<Unit filename="../kernel/asm.s" />
+		<Unit filename="../kernel/blk_drv/Makefile" />
+		<Unit filename="../kernel/blk_drv/Makefile~" />
 		<Unit filename="../kernel/blk_drv/blk.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../kernel/blk_drv/blk.h" />
+		<Unit filename="../kernel/blk_drv/blk_drv.a" />
 		<Unit filename="../kernel/blk_drv/floppy.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/blk_drv/floppy.o" />
 		<Unit filename="../kernel/blk_drv/hd.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="../kernel/blk_drv/hd.h" />
+		<Unit filename="../kernel/blk_drv/hd.o" />
 		<Unit filename="../kernel/blk_drv/ll_rw_blk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/blk_drv/ll_rw_blk.o" />
 		<Unit filename="../kernel/blk_drv/ramdisk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/blk_drv/ramdisk.o" />
+		<Unit filename="../kernel/chr_drv/Makefile" />
+		<Unit filename="../kernel/chr_drv/Makefile~" />
+		<Unit filename="../kernel/chr_drv/chr_drv.a" />
 		<Unit filename="../kernel/chr_drv/console.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/chr_drv/console.o" />
 		<Unit filename="../kernel/chr_drv/keyboard.S" />
+		<Unit filename="../kernel/chr_drv/keyboard.o" />
+		<Unit filename="../kernel/chr_drv/keyboard.s" />
+		<Unit filename="../kernel/chr_drv/rs_io.o" />
 		<Unit filename="../kernel/chr_drv/rs_io.s" />
 		<Unit filename="../kernel/chr_drv/serial.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/chr_drv/serial.o" />
 		<Unit filename="../kernel/chr_drv/tty_io.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/chr_drv/tty_io.o" />
 		<Unit filename="../kernel/chr_drv/tty_ioctl.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/chr_drv/tty_ioctl.o" />
 		<Unit filename="../kernel/exit.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/exit.o" />
 		<Unit filename="../kernel/fork.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/fork.o" />
+		<Unit filename="../kernel/kernel.o" />
+		<Unit filename="../kernel/math/Makefile" />
+		<Unit filename="../kernel/math/Makefile~" />
+		<Unit filename="../kernel/math/math.a" />
 		<Unit filename="../kernel/math/math_emulate.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/math/math_emulate.o" />
 		<Unit filename="../kernel/mktime.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/mktime.o" />
 		<Unit filename="../kernel/panic.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/panic.o" />
 		<Unit filename="../kernel/printk.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/printk.o" />
 		<Unit filename="../kernel/sched.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/sched.o" />
 		<Unit filename="../kernel/signal.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/signal.o" />
 		<Unit filename="../kernel/sys.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/sys.o" />
+		<Unit filename="../kernel/system_call.o" />
 		<Unit filename="../kernel/system_call.s" />
 		<Unit filename="../kernel/traps.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/traps.o" />
 		<Unit filename="../kernel/vsprintf.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../kernel/vsprintf.o" />
+		<Unit filename="../lib/Makefile" />
+		<Unit filename="../lib/Makefile~" />
 		<Unit filename="../lib/_exit.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/_exit.o" />
 		<Unit filename="../lib/close.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/close.o" />
 		<Unit filename="../lib/ctype.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/ctype.o" />
 		<Unit filename="../lib/dup.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/dup.o" />
 		<Unit filename="../lib/errno.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/errno.o" />
 		<Unit filename="../lib/execve.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/execve.o" />
+		<Unit filename="../lib/lib.a" />
 		<Unit filename="../lib/malloc.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/malloc.o" />
 		<Unit filename="../lib/open.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/open.o" />
 		<Unit filename="../lib/setsid.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/setsid.o" />
 		<Unit filename="../lib/string.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/string.o" />
 		<Unit filename="../lib/wait.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/wait.o" />
 		<Unit filename="../lib/write.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../lib/write.o" />
+		<Unit filename="../mm/Makefile" />
+		<Unit filename="../mm/Makefile~" />
+		<Unit filename="../mm/memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../mm/memory.o" />
+		<Unit filename="../mm/mm.o" />
+		<Unit filename="../mm/page.o" />
 		<Unit filename="../mm/page.s" />
 		<Unit filename="../tools/build.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../tools/build.c~" />
+		<Unit filename="linux0.11.layout" />
 		<Extensions>
 			<code_completion />
 			<debugger />
