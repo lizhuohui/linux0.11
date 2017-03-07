@@ -67,7 +67,7 @@ __asm__ ("movl %0,%%fs:%1"::"r" (val),"m" (*addr));\
 
 #define set_fs(val_in)\
 ({\
-unsigned long val = val_in;\
-    __asm__("mov %0,%%fs"::"a" ((unsigned short) val));\
+unsigned long val = val_in;
+    __asm__("mov %0,%%fs"::"a" ((unsigned short) val));
 })
 
