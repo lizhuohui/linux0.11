@@ -116,175 +116,189 @@ __asm__("cld\n"\
 	__res;\
 })
 
-inline int strncmp(const char * cs,const char * ct,int count)
-{
-register int __res __asm__("ax");
-__asm__("cld\n"
-    "1:\tdecl %3\n\t"
-    "js 2f\n\t"
-    "lodsb\n\t"
-    "scasb\n\t"
-    "jne 3f\n\t"
-    "testb %%al,%%al\n\t"
-    "jne 1b\n"
-    "2:\txorl %%eax,%%eax\n\t"
-    "jmp 4f\n"
-    "3:\tmovl $1,%%eax\n\t"
-    "jl 4f\n\t"
-    "negl %%eax\n"
-    "4:"
-    :"=a" (__res):"D" (cs),"S" (ct),"c" (count));
-return __res;
+#define strncmp(cs_in,ct_in,count_in)\
+({\
+const char * cs = cs_in;\
+const char * ct = ct_in;\
+int count = count_in;\
+register int __res __asm__("ax");\
+__asm__("cld\n"\
+    "1:\tdecl %3\n\t"\
+    "js 2f\n\t"\
+    "lodsb\n\t"\
+    "scasb\n\t"\
+    "jne 3f\n\t"\
+    "testb %%al,%%al\n\t"\
+    "jne 1b\n"\
+    "2:\txorl %%eax,%%eax\n\t"\
+    "jmp 4f\n"\
+    "3:\tmovl $1,%%eax\n\t"\
+    "jl 4f\n\t"\
+    "negl %%eax\n"\
+    "4:"\
+    :"=a" (__res):"D" (cs),"S" (ct),"c" (count));\
+	__res;\
+})
+
+#define strchr(s_in,c_in)\
+({\
+const char * s = s_in;\
+char c = c_in;\
+register char * __res __asm__("ax");\
+__asm__("cld\n\t"\
+    "movb %%al,%%ah\n"\
+    "1:\tlodsb\n\t"\
+    "cmpb %%ah,%%al\n\t"\
+    "je 2f\n\t"\
+    "testb %%al,%%al\n\t"\
+    "jne 1b\n\t"\
+    "movl $1,%1\n"\
+    "2:\tmovl %1,%0\n\t"\
+    "decl %0"\
+    :"=a" (__res):"S" (s),"0" (c));\
+	 __res;\
 }
 
-inline char * strchr(const char * s,char c)
-{
-register char * __res __asm__("ax");
-__asm__("cld\n\t"
-    "movb %%al,%%ah\n"
-    "1:\tlodsb\n\t"
-    "cmpb %%ah,%%al\n\t"
-    "je 2f\n\t"
-    "testb %%al,%%al\n\t"
-    "jne 1b\n\t"
-    "movl $1,%1\n"
-    "2:\tmovl %1,%0\n\t"
-    "decl %0"
-    :"=a" (__res):"S" (s),"0" (c));
-return __res;
-}
+#define strrchr(s_in,c_in)\
+({\
+const char * s = s_in;\
+char c = c_in;\
+register char * __res __asm__("dx");\
+__asm__("cld\n\t"\
+    "movb %%al,%%ah\n"\
+    "1:\tlodsb\n\t"\
+    "cmpb %%ah,%%al\n\t"\
+    "jne 2f\n\t"\
+    "movl %%esi,%0\n\t"\
+    "decl %0\n"\
+    "2:\ttestb %%al,%%al\n\t"\
+    "jne 1b"\
+    :"=d" (__res):"0" (0),"S" (s),"a" (c));\
+	 __res;\
+})
 
-inline char * strrchr(const char * s,char c)
-{
-register char * __res __asm__("dx");
-__asm__("cld\n\t"
-    "movb %%al,%%ah\n"
-    "1:\tlodsb\n\t"
-    "cmpb %%ah,%%al\n\t"
-    "jne 2f\n\t"
-    "movl %%esi,%0\n\t"
-    "decl %0\n"
-    "2:\ttestb %%al,%%al\n\t"
-    "jne 1b"
-    :"=d" (__res):"0" (0),"S" (s),"a" (c));
-return __res;
-}
+#define strspn(cs_in, ct_in)\
+({\
+const char * cs = cs_in;\
+ const char * ct = ct_in;\
+register char * __res __asm__("si");\
+__asm__("cld\n\t"\
+    "movl %4,%%edi\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "notl %%ecx\n\t"\
+    "decl %%ecx\n\t"\
+    "movl %%ecx,%%edx\n"\
+    "1:\tlodsb\n\t"\
+    "testb %%al,%%al\n\t"\
+    "je 2f\n\t"\
+    "movl %4,%%edi\n\t"\
+    "movl %%edx,%%ecx\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "je 1b\n"\
+    "2:\tdecl %0"\
+    :"=S" (__res):"a" (0),"c" (0xffffffff),"0" (cs),"g" (ct)\
+    );\
+	__res-cs;\
+})
 
-inline int strspn(const char * cs, const char * ct)
-{
-register char * __res __asm__("si");
-__asm__("cld\n\t"
-    "movl %4,%%edi\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "notl %%ecx\n\t"
-    "decl %%ecx\n\t"
-    "movl %%ecx,%%edx\n"
-    "1:\tlodsb\n\t"
-    "testb %%al,%%al\n\t"
-    "je 2f\n\t"
-    "movl %4,%%edi\n\t"
-    "movl %%edx,%%ecx\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "je 1b\n"
-    "2:\tdecl %0"
-    :"=S" (__res):"a" (0),"c" (0xffffffff),"0" (cs),"g" (ct)
-    );
-return __res-cs;
-}
+#define strcspn(cs_in, ct_in)\
+({\
+const char * cs = cs_in;\
+ const char * ct = ct_in;\
+register char * __res __asm__("si");\
+__asm__("cld\n\t"\
+    "movl %4,%%edi\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "notl %%ecx\n\t"\
+    "decl %%ecx\n\t"\
+    "movl %%ecx,%%edx\n"\
+    "1:\tlodsb\n\t"\
+    "testb %%al,%%al\n\t"\
+    "je 2f\n\t"\
+    "movl %4,%%edi\n\t"\
+    "movl %%edx,%%ecx\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "jne 1b\n"\
+    "2:\tdecl %0"\
+    :"=S" (__res):"a" (0),"c" (0xffffffff),"0" (cs),"g" (ct)\
+    );\
+	(__res-cs);\
+})
 
-inline int strcspn(const char * cs, const char * ct)
-{
-register char * __res __asm__("si");
-__asm__("cld\n\t"
-    "movl %4,%%edi\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "notl %%ecx\n\t"
-    "decl %%ecx\n\t"
-    "movl %%ecx,%%edx\n"
-    "1:\tlodsb\n\t"
-    "testb %%al,%%al\n\t"
-    "je 2f\n\t"
-    "movl %4,%%edi\n\t"
-    "movl %%edx,%%ecx\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "jne 1b\n"
-    "2:\tdecl %0"
-    :"=S" (__res):"a" (0),"c" (0xffffffff),"0" (cs),"g" (ct)
-    );
-return __res-cs;
-}
+#define strpbrk(cs_in,ct_in)\
+({\
+const char * cs = cs_in;\
+const char * ct = ct_in;\
+register char * __res __asm__("si");\
+__asm__("cld\n\t"\
+    "movl %4,%%edi\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "notl %%ecx\n\t"\
+    "decl %%ecx\n\t"\
+    "movl %%ecx,%%edx\n"\
+    "1:\tlodsb\n\t"\
+    "testb %%al,%%al\n\t"\
+    "je 2f\n\t"\
+    "movl %4,%%edi\n\t"\
+    "movl %%edx,%%ecx\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "jne 1b\n\t"\
+    "decl %0\n\t"\
+    "jmp 3f\n"\
+    "2:\txorl %0,%0\n"\
+    "3:"\
+    :"=S" (__res):"a" (0),"c" (0xffffffff),"0" (cs),"g" (ct)\
+    );\
+	 __res;\
+})
 
-inline char * strpbrk(const char * cs,const char * ct)
-{
-register char * __res __asm__("si");
-__asm__("cld\n\t"
-    "movl %4,%%edi\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "notl %%ecx\n\t"
-    "decl %%ecx\n\t"
-    "movl %%ecx,%%edx\n"
-    "1:\tlodsb\n\t"
-    "testb %%al,%%al\n\t"
-    "je 2f\n\t"
-    "movl %4,%%edi\n\t"
-    "movl %%edx,%%ecx\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "jne 1b\n\t"
-    "decl %0\n\t"
-    "jmp 3f\n"
-    "2:\txorl %0,%0\n"
-    "3:"
-    :"=S" (__res):"a" (0),"c" (0xffffffff),"0" (cs),"g" (ct)
-    );
-return __res;
-}
-
-inline char * strstr(const char * cs,const char * ct)
-{
-register char * __res __asm__("ax");
+#define strstr(cs_in,ct_in)\
+({\
+const char * cs = cs_in;\
+const char * ct = ct_in;\
+register char * __res __asm__("ax");\
 __asm__("cld\n\t" \
-    "movl %4,%%edi\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "notl %%ecx\n\t"
-    "decl %%ecx\n\t"    /* NOTE! This also sets Z if searchstring='' */
-    "movl %%ecx,%%edx\n"
-    "1:\tmovl %4,%%edi\n\t"
-    "movl %%esi,%%eax\n\t"
-    "movl %%edx,%%ecx\n\t"
-    "repe\n\t"
-    "cmpsb\n\t"
-    "je 2f\n\t"     /* also works for empty string, see above */
-    "xchgl %%eax,%%esi\n\t"
-    "incl %%esi\n\t"
-    "cmpb $0,-1(%%eax)\n\t"
-    "jne 1b\n\t"
-    "xorl %%eax,%%eax\n\t"
-    "2:"
-    :"=a" (__res):"0" (0),"c" (0xffffffff),"S" (cs),"g" (ct)
-    );
-return __res;
-}
+    "movl %4,%%edi\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "notl %%ecx\n\t"\
+    "decl %%ecx\n\t" \
+    "movl %%ecx,%%edx\n"\
+    "1:\tmovl %4,%%edi\n\t"\
+    "movl %%esi,%%eax\n\t"\
+    "movl %%edx,%%ecx\n\t"\
+    "repe\n\t"\
+    "cmpsb\n\t"\
+    "je 2f\n\t"\
+    "xchgl %%eax,%%esi\n\t"\
+    "incl %%esi\n\t"\
+    "cmpb $0,-1(%%eax)\n\t"\
+    "jne 1b\n\t"\
+    "xorl %%eax,%%eax\n\t"\
+    "2:"\
+    :"=a" (__res):"0" (0),"c" (0xffffffff),"S" (cs),"g" (ct)\
+    );\
+	 __res;\
+})
 
-inline int strlen(const char * s)
-{
-register int __res __asm__("cx");
-
-__asm__("cld\n\t"
-    "repne\n\t"
-    "scasb\n\t"
-    "notl %0\n\t"
-    "decl %0"
-    :"=c" (__res):"D" (s),"a" (0),"0" (0xffffffff));
-
-return __res;
-}
+#define strlen(s_in)\
+({\
+const char * s = s_in;\
+register int __res __asm__("cx");\
+__asm__("cld\n\t"\
+    "repne\n\t"\
+    "scasb\n\t"\
+    "notl %0\n\t"\
+    "decl %0"\
+    :"=c" (__res):"D" (s),"a" (0),"0" (0xffffffff));\
+	 __res;\
+})
 
 char * ___strtok;
 
@@ -347,48 +361,57 @@ __asm__("testl %1,%1\n\t"
 return __res;
 }
 
-inline void * memcpy(void * dest,const void * src, int n)
-{
-__asm__("cld\n\t"
-    "rep\n\t"
-    "movsb"
-    ::"c" (n),"S" (src),"D" (dest)
-    );
-return dest;
-}
+#define memcpy(dest_in,src_in, n_in)\
+({\
+void * dest = dest_in;\
+const void * src = src_in;\
+ int n = n_in;\
+__asm__("cld\n\t"\
+    "rep\n\t"\
+    "movsb"\
+    ::"c" (n),"S" (src),"D" (dest)\
+    );\
+	 dest;\
+})
 
-inline void * memmove(void * dest,const void * src, int n)
-{
-if (dest<src)
-__asm__("cld\n\t"
-    "rep\n\t"
-    "movsb"
-    ::"c" (n),"S" (src),"D" (dest)
-    );
-else
-__asm__("std\n\t"
-    "rep\n\t"
-    "movsb"
-    ::"c" (n),"S" (src+n-1),"D" (dest+n-1)
-    );
-return dest;
-}
+#define memmove(dest_in,src_in, n_in)\
+({\
+void * dest = dest_in;\
+const void * src = src_in;\
+ int n = n_in;\
+if (dest<src)\
+__asm__("cld\n\t"\
+    "rep\n\t"\
+    "movsb"\
+    ::"c" (n),"S" (src),"D" (dest)\
+    );\
+else\
+__asm__("std\n\t"\
+    "rep\n\t"\
+    "movsb"\
+    ::"c" (n),"S" (src+n-1),"D" (dest+n-1)\
+    );\
+	 dest;\
+})
 
-inline int memcmp(const void * cs,const void * ct,int count)
-{
-register int __res __asm__("ax");
-__asm__("cld\n\t"
-    "repe\n\t"
-    "cmpsb\n\t"
-    "je 1f\n\t"
-    "movl $1,%%eax\n\t"
-    "jl 1f\n\t"
-    "negl %%eax\n"
-    "1:"
-    :"=a" (__res):"0" (0),"D" (cs),"S" (ct),"c" (count)
-    );
-return __res;
-}
+#define memcmp(cs_in,ct_in,count_in)\
+({\
+const void * cs = cs_in;\
+const void * ct = ct_in;\
+int count = count_in;\
+register int __res __asm__("ax");\
+__asm__("cld\n\t"\
+    "repe\n\t"\
+    "cmpsb\n\t"\
+    "je 1f\n\t"\
+    "movl $1,%%eax\n\t"\
+    "jl 1f\n\t"\
+    "negl %%eax\n"\
+    "1:"\
+    :"=a" (__res):"0" (0),"D" (cs),"S" (ct),"c" (count)\
+    );\
+	 __res;\
+})
 
 inline void * memchr(const void * cs,char c,int count)
 {
